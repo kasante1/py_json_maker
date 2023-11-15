@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 
-import os
 from pathlib import Path
 
-from access_pdf_file import *
-# from pypdf import PdfReader
+from file_ext import check_file_ext
+
 
 import colorama
 # init the colorama module
@@ -27,29 +26,33 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="extract file contents to make json file"
     )
-    parser.add_argument("file_directory", help="Enter file directory!")
+    parser.add_argument("-d", "--directory",
+                         help="Enter file directory!")
 
+    parser.add_argument("-f", "--file", 
+                        help="Enter file path")
+    
+    parser.add_argument("-c", "--cwd",
+                         help="current working directory")
+    
     args = parser.parse_args()
     dir_path = args.file_directory
+
+    # cmd args accept file, directory or no input
+    # hence get cwd
+
+    if dir_path:
+        for file in Path(dir_path).rglob('*'):
+            # check_file_ext(file)
+            print(file)
 
 
     # TODO get the current working directory
     #  if no file path is provided
     #  ie. no args were provided 
 
-    # current_working_directory = os.getcwd()
-
-    for files in Path(dir_path).rglob('*'):
-        print(files)
-    # # get pdf file contents
-    # is_pdf_file = check_pdf_file(file_path)
-
-
-    # if is_pdf_file:
-    #     reader = PdfReader(file_path)
-    #     # show progress bar
-        
-    #     counter_number_of_pages = 0
-    #     total_number_of_pages = len(reader.pages)
+    current_working_directory = Path.cwd()
+    for file in Path(current_working_directory).rglob('*'):
+        check_file_ext(file)
 
 

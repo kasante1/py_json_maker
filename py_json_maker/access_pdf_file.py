@@ -1,23 +1,15 @@
 #!/usr/bin/python3
 
-import os
+from pypdf import PdfReader
 
+def get_pdf_texts(file_path):
+    reader = PdfReader(file_path)
 
-# get pdf file
-def check_pdf_file(pdf_file_directory):
-    _, file_extension = os.path.splitext(pdf_file_directory)
-    if file_extension == ".pdf" or file_extension == ".Pdf":
-        return pdf_file_directory
-    else:
-        return not_pdf_file()
+    total_number_of_pages = len(reader.pages)
 
-
-# its not a pdf file
-
-def not_pdf_file():
-    return False
-
-
+    for page in total_number_of_pages:
+        text = reader.pages[page]
+        print(text.extract_text())
 
 if __name__ == "__main__":
-    fetch_pdf_file(file_name)
+    get_pdf_texts(file_path)
