@@ -18,8 +18,7 @@ YELLOW = colorama.Fore.YELLOW
 if __name__ == "__main__":
     import argparse
 
-    title = """
-       >> JSON MAKER \n """
+    title = """>> JSON MAKER \n"""
     
     print(f"{RESET} {title}")
 
@@ -32,27 +31,30 @@ if __name__ == "__main__":
     parser.add_argument("-f", "--file", 
                         help="Enter file path")
     
-    parser.add_argument("-c", "--cwd",
+    parser.add_argument("-c", "--cwd", action="store_true",
                          help="current working directory")
     
+    parser.add_argument("-v","--version", action="version", version="0.1.0")
+
     args = parser.parse_args()
-    dir_path = args.file_directory
+    dir_path = args.directory
+    file_path = args.file
+    cwd = args.cwd
 
     # cmd args accept file, directory or no input
     # hence get cwd
 
     if dir_path:
-        for file in Path(dir_path).rglob('*'):
-            # check_file_ext(file)
-            print(file)
-
-
-    # TODO get the current working directory
-    #  if no file path is provided
-    #  ie. no args were provided 
-
-    current_working_directory = Path.cwd()
-    for file in Path(current_working_directory).rglob('*'):
-        check_file_ext(file)
-
+        for file in Path(dir_path).rglob("*"):
+            check_file_ext(file)
+   
+    elif file_path:
+        print(file_path)
+    
+    # get cwd when no args provided
+    elif cwd:
+        current_working_directory = Path.cwd()
+        for file in Path(current_working_directory).rglob("*"):
+            check_file_ext(file)
+   
 
