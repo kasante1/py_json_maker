@@ -47,18 +47,6 @@ files = [
 attrs = ">=19.2.0"
 
 [[package]]
-name = "ndjson"
-version = "0.3.1"
-description = "JsonDecoder for ndjson"
-category = "main"
-optional = false
-python-versions = "*"
-files = [
-    {file = "ndjson-0.3.1-py2.py3-none-any.whl", hash = "sha256:839c22275e6baa3040077b83c005ac24199b94973309a8a1809be962c753a410"},
-    {file = "ndjson-0.3.1.tar.gz", hash = "sha256:bf9746cb6bb1cb53d172cda7f154c07c786d665ff28341e4e689b796b229e5d6"},
-]
-
-[[package]]
 name = "pypdf"
 version = "3.17.0"
 description = "A pure-python PDF library capable of splitting, merging, cropping, and transforming PDF files"
@@ -80,4 +68,4 @@ image = ["Pillow (>=8.0.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "1b44d9055df13dd4195bf8e6550a3ab5efb3ee2e4be338a6b745bd2761dca648"
+content-hash = "f978403c88bb38e56ca0f9426fb39acceef7989bb7cc50e278468b0f7cb65e73"
