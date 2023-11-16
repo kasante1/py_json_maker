@@ -44,7 +44,7 @@ if __name__ == "__main__":
     # hence get cwd
 
     if dir_path and Path(dir_path).is_dir():
-        total_files = len(list(Path(dir_path).rglob("*"))) - 1
+        total_files = sum(1 for _ in Path(dir_path).rglob("*")) - 1
         counter = 0
         for file in Path(dir_path).rglob("*"):
             check_file_ext(dir_path, file)
