@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 from pathlib import Path
-
 from file_ext import check_file_ext
 
 
@@ -45,8 +44,12 @@ if __name__ == "__main__":
     # hence get cwd
 
     if dir_path and Path(dir_path).is_dir():
+        total_files = len(list(Path(dir_path).rglob("*"))) - 1
+        counter = 0
         for file in Path(dir_path).rglob("*"):
             check_file_ext(dir_path, file)
+            print("[ ^ ] Processed files ", counter, " / ", total_files)
+            counter += 1
    
     elif file_path and Path(file_path).is_file():
         print(file_path)

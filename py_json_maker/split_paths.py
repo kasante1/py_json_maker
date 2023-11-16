@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 from pathlib import Path
 from sys import platform
 
@@ -26,7 +27,7 @@ def split_paths(path, get_delimiter = check_os()):
     args_path = Path(path)
 
     if args_path.is_file() or args_path.is_dir():
-        parent_path = args_path.parent
+        parent_path = args_path
         _, delimiter = get_delimiter
 
         spilt_path = str(parent_path).split(delimiter)
@@ -37,4 +38,4 @@ def split_paths(path, get_delimiter = check_os()):
         return None
 
 if __name__ == "__main__":
-    split_paths(text)
+    print(split_paths("/home/asante/Documents/sql"))
