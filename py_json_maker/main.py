@@ -41,18 +41,18 @@ if __name__ == "__main__":
     file_path = args.file
     cwd = args.cwd
 
-    # cmd args accept file, directory or no input
+    # TODO cmd args accept file, directory or no input
     # hence get cwd
 
-    if dir_path:
+    if dir_path and Path(dir_path).is_dir():
         for file in Path(dir_path).rglob("*"):
-            check_file_ext(file)
+            check_file_ext(dir_path, file)
    
-    elif file_path:
+    elif file_path and Path(file_path).is_file():
         print(file_path)
     
     # get cwd when no args provided
-    elif cwd:
+    elif cwd and Path(cwd).is_dir():
         current_working_directory = Path.cwd()
         for file in Path(current_working_directory).rglob("*"):
             check_file_ext(file)
