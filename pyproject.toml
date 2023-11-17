@@ -10,7 +10,7 @@ packages = [{include = "py_json_maker"}]
 python = "^3.11"
 pypdf = "^3.17.0"
 colorama = "^0.4.6"
-jsonlines = "^4.0.0"
+progress = "^1.6"
 
 
 [build-system]
