@@ -2,7 +2,7 @@
 
 import os
 from access_pdf_file import get_pdf_texts
-from json_writer import append_Json
+from json_writer import json_writer
 
 
 def check_file_ext(dir_path, file_path):
@@ -23,11 +23,12 @@ def check_file_ext(dir_path, file_path):
         text_content = get_pdf_texts(file_path)
 
         # write text content to json file
-        
-        append_Json(dir_path, text_content)
+        json_writer(dir_path, text_content)
 
-        append_Json_status = f">> DONE  - write {file_path} to json file \n"
-        print(append_Json_status)
+        json_writer(dir_path, ",")
+        
+        write_Json_status = f">> DONE  - write {file_path} to json file \n"
+        print(write_Json_status)
 
     elif file_extension == ".txt":
         print(file_extension)

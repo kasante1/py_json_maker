@@ -2,6 +2,8 @@
 
 from pathlib import Path
 from file_ext import check_file_ext
+from json_writer import json_writer
+
 
 
 import colorama
@@ -42,15 +44,17 @@ if __name__ == "__main__":
 
     # TODO cmd args accept file, directory or no input
     # hence get cwd
-
+    
     if dir_path and Path(dir_path).is_dir():
+        json_writer(dir_path, "[")
         total_files = sum(1 for _ in Path(dir_path).rglob("*")) - 1
         counter = 0
         for file in Path(dir_path).rglob("*"):
             check_file_ext(dir_path, file)
             print("[ ^ ] Processed files ", counter, " / ", total_files)
             counter += 1
-   
+        json_writer(dir_path, "]")
+
     elif file_path and Path(file_path).is_file():
         print(file_path)
     
@@ -59,5 +63,5 @@ if __name__ == "__main__":
         current_working_directory = Path.cwd()
         for file in Path(current_working_directory).rglob("*"):
             check_file_ext(file)
-   
+    
 

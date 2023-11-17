@@ -20,8 +20,10 @@ def get_pdf_texts(file_path):
 
     # TODO progress bar print(total_number_of_pages)
     
+    print("extracting texts ...  ", file_path, counter, "/", total_number_of_pages)
+    
     for page in range(total_number_of_pages):
-        print("extracting texts ...  ", file_path, counter, "/", total_number_of_pages)
+       
         text = reader.pages[page]
         
         #  strip text of all punctuation marks

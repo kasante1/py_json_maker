@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 
-import jsonlines
 from split_paths import split_paths
 import os
+import json
 
-def append_Json(json_file, text_content, split_path = split_paths):    
+
+def get_json_file_name(json_file, split_path = split_paths):
     """
-    append file contents to json file
+    get json file name and path to create json file
     """
 
     get_json_file_name = split_path(json_file)
@@ -17,9 +18,54 @@ def append_Json(json_file, text_content, split_path = split_paths):
     
     json_file_path = os.path.join(json_file, json_file_name)
 
-    with jsonlines.open(json_file_path, mode='a') as writer:
-        writer.write(text_content)
-    
+    return json_file_path
+
+
+def json_writer(json_file, text_content, json_file_path = get_json_file_name):    
+    """
+    write contents to json file
+    """
+
+    json_file_name = json_file_path(json_file)
+
+    json_structure = ["[", "]", ","]
+
+    if text_content in json_structure:
+        with open(json_file_name, 'a') as writer:
+            writer.writelines(text_content)
+    else:
+        with open(json_file_name, 'a') as writer:
+            json.dump(text_content, writer)
+
+
+# json_format = """
+
+# [
+#     {
+#     "filename" : "a book",
+#     "contents" : {
+#     "0": "page 0 contents here",
+#     "1": "page 1 contents here"}
+#     },
+
+#     {
+#     "filename" : "a second book",
+#     "contents" : {
+#     "0": "page 0 contents here",
+#     "1": "page 1 contents here"}
+#     }
+# ]
+
+# TODO
+# 1. write [
+# 2. add the dictionaries
+# 3. add comma after the dictionary
+# 4. write the closing ]
+# 5. 
+
+
+# """
+
 
 if __name__ == "__main__":
     append_Json(json_file, text_content)
