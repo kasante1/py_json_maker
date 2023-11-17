@@ -57,8 +57,8 @@ if __name__ == "__main__":
 
             check_file_ext(dir_path, file, total_files, file_number)
 
-            print("[ ^ ] Processed files ", counter, " / ", total_files)
-            
+            print("\r [ ^ ] Processed files ", counter, " / ", total_files, end="")
+
             counter += 1
 
         # add closing ] to json file

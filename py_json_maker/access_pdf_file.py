@@ -2,6 +2,7 @@
 
 from pypdf import PdfReader
 from text_utils import sanitize_texts
+from progress.bar import Bar
 
 
 def get_pdf_texts(file_path):
@@ -16,14 +17,13 @@ def get_pdf_texts(file_path):
     reader = PdfReader(file_path)
 
     total_number_of_pages = len(reader.pages)
-    counter = 0
 
     # TODO progress bar total_number_of_pages
-    
-    print("extracting texts ...  ", file_path, counter, "/", total_number_of_pages)
+
+    bar = Bar("extracting text...", max= total_number_of_pages)
 
     for page in range(total_number_of_pages):
-       
+
         text = reader.pages[page]
         
         #  strip text of all punctuation marks
@@ -32,8 +32,7 @@ def get_pdf_texts(file_path):
 
         pdf_contents["contents"].update( { str(page) : text_contents })
 
-        print("text extracted ...  ", file_path, counter, "/", total_number_of_pages)
-        counter += 1
+        bar.next()
     
     return pdf_contents
 

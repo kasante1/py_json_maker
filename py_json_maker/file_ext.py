@@ -17,7 +17,7 @@ def check_file_ext(dir_path, file_path, total_files, file_number):
     if file_extension == ".pdf" or file_extension == ".Pdf":
         
         working_status = f"working on >> {file_path}, \n"
-        print(working_status)
+        print(f"\r  { working_status }", end="")
 
         # extract text from pdf file
         text_content = get_pdf_texts(file_path)
@@ -28,8 +28,8 @@ def check_file_ext(dir_path, file_path, total_files, file_number):
         if file_number < total_files - 1:
             json_writer(dir_path, ",")
 
-        write_Json_status = f">> DONE  - write {file_path} to json file \n"
-        print(write_Json_status)
+        write_Json_status = f">> DONE  - write to json file \n"
+        print(f"\r {write_Json_status} ", end="")
 
     elif file_extension == ".txt":
         print(file_extension)
