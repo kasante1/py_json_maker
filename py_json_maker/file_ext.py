@@ -5,7 +5,7 @@ from access_pdf_file import get_pdf_texts
 from json_writer import json_writer
 
 
-def check_file_ext(dir_path, file_path):
+def check_file_ext(dir_path, file_path, total_files, file_number):
     """
     get file contents
     according to the file extension
@@ -25,8 +25,9 @@ def check_file_ext(dir_path, file_path):
         # write text content to json file
         json_writer(dir_path, text_content)
 
-        json_writer(dir_path, ",")
-        
+        if file_number < total_files - 1:
+            json_writer(dir_path, ",")
+
         write_Json_status = f">> DONE  - write {file_path} to json file \n"
         print(write_Json_status)
 
@@ -35,4 +36,4 @@ def check_file_ext(dir_path, file_path):
 
 
 if __name__ == "__main__":
-    check_file_ext(file_name)
+    check_file_ext(dir_path, file_path, total_files)

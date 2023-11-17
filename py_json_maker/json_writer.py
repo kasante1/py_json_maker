@@ -68,4 +68,4 @@ def json_writer(json_file, text_content, json_file_path = get_json_file_name):
 
 
 if __name__ == "__main__":
-    append_Json(json_file, text_content)
+    json_writer(json_file, text_content)

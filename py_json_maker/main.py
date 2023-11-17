@@ -46,13 +46,22 @@ if __name__ == "__main__":
     # hence get cwd
     
     if dir_path and Path(dir_path).is_dir():
+
+        # add opening [ to json file
         json_writer(dir_path, "[")
+
         total_files = sum(1 for _ in Path(dir_path).rglob("*")) - 1
+
         counter = 0
-        for file in Path(dir_path).rglob("*"):
-            check_file_ext(dir_path, file)
+        for file_number, file in enumerate(Path(dir_path).rglob("*")):
+
+            check_file_ext(dir_path, file, total_files, file_number)
+
             print("[ ^ ] Processed files ", counter, " / ", total_files)
+            
             counter += 1
+
+        # add closing ] to json file
         json_writer(dir_path, "]")
 
     elif file_path and Path(file_path).is_file():
